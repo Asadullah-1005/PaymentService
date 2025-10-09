@@ -1,5 +1,6 @@
 package com.Tulip_Tech.PaymentService.entity;
 
+import com.Tulip_Tech.PaymentService.model.Payment_Mode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -25,7 +26,7 @@ public class PaymentEntity {
     private Long orderId;
 
     @Setter
-    private String paymentMode;
+    private Payment_Mode paymentMode;
 
     @Setter
     private String referenceNumber;
@@ -37,5 +38,5 @@ public class PaymentEntity {
     private String paymentStatus;
 
     @Setter
-    private Double amount;
+    private Long amount;
 }

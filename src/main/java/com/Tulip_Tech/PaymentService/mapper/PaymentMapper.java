@@ -1,7 +1,7 @@
 package com.Tulip_Tech.PaymentService.mapper;
 
 import com.Tulip_Tech.PaymentService.entity.PaymentEntity;
-import com.Tulip_Tech.PaymentService.model.CreatePaymentRequest;
+import com.Tulip_Tech.PaymentService.model.Dto.CreatePaymentRequest;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 

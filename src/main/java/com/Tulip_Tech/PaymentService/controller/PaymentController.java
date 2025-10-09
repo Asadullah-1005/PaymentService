@@ -1,8 +1,6 @@
 package com.Tulip_Tech.PaymentService.controller;
 
-import com.Tulip_Tech.PaymentService.entity.PaymentEntity;
-import com.Tulip_Tech.PaymentService.model.CreatePaymentRequest;
-import com.Tulip_Tech.PaymentService.service.PaymentService;
+import com.Tulip_Tech.PaymentService.model.Dto.CreatePaymentRequest;
 import com.Tulip_Tech.PaymentService.service.PaymentServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +17,7 @@ public class PaymentController {
 
     private final PaymentServiceImpl paymentServiceImpl;
 
-    @PostMapping
+    @PostMapping("/doPayment")
     public ResponseEntity<?> doPayment(@RequestBody CreatePaymentRequest createPaymentRequest) {
         return new ResponseEntity<>(
                 paymentServiceImpl.doPayment(createPaymentRequest), HttpStatus.CREATED

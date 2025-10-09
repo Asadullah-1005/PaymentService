@@ -2,7 +2,7 @@ package com.Tulip_Tech.PaymentService.service;
 
 import com.Tulip_Tech.PaymentService.entity.PaymentEntity;
 import com.Tulip_Tech.PaymentService.mapper.PaymentMapper;
-import com.Tulip_Tech.PaymentService.model.CreatePaymentRequest;
+import com.Tulip_Tech.PaymentService.model.Dto.CreatePaymentRequest;
 import com.Tulip_Tech.PaymentService.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
