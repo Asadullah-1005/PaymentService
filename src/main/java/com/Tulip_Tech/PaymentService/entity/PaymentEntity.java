@@ -1,10 +1,7 @@
 package com.Tulip_Tech.PaymentService.entity;
 
 import com.Tulip_Tech.PaymentService.model.Payment_Mode;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
@@ -26,6 +23,7 @@ public class PaymentEntity {
     private Long orderId;
 
     @Setter
+    @Enumerated(EnumType.STRING)
     private Payment_Mode paymentMode;
 
     @Setter
