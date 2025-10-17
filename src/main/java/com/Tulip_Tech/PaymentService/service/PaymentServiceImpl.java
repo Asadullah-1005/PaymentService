@@ -3,12 +3,16 @@ package com.Tulip_Tech.PaymentService.service;
 import com.Tulip_Tech.PaymentService.entity.PaymentEntity;
 import com.Tulip_Tech.PaymentService.mapper.PaymentMapper;
 import com.Tulip_Tech.PaymentService.model.Dto.CreatePaymentRequest;
+import com.Tulip_Tech.PaymentService.model.domain.Payment;
 import com.Tulip_Tech.PaymentService.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -33,5 +37,18 @@ public class PaymentServiceImpl implements PaymentService {
 
         return paymentEntity.getId();
 
+    }
+
+    @Override
+    public Payment findPaymentByOrderId(Long id) {
+        log.info("Get Payment Details for Order Id : {}", id);
+        Optional<PaymentEntity> paymentEntity = Optional.ofNullable(paymentRepository.findByOrderId(id));
+        if (paymentEntity.isPresent()) {
+            return paymentMapper.entityToDomain(paymentEntity.get());
+        } else {
+            log.error("Payment not found for Order Id : {}", id);
+            ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, "Payment not found for Order Id : " + id);
+            throw new RuntimeException(problemDetail.toString());
+        }
     }
 }
