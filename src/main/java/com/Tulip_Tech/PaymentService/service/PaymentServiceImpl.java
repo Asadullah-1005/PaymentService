@@ -7,12 +7,9 @@ import com.Tulip_Tech.PaymentService.model.domain.Payment;
 import com.Tulip_Tech.PaymentService.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ProblemDetail;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +18,6 @@ public class PaymentServiceImpl implements PaymentService {
 
     private final PaymentRepository paymentRepository;
     private final PaymentMapper paymentMapper;
-
 
     @Override
     public Long doPayment(CreatePaymentRequest createPaymentRequest) {
@@ -43,18 +39,15 @@ public class PaymentServiceImpl implements PaymentService {
     public Payment findPaymentByOrderId(Long id) {
         log.info("Get Payment Details for Order Id : {}", id);
 
-//        Optional<PaymentEntity> paymentEntity = Optional.ofNullable(paymentRepository.findByOrderId(id));
-
-
         PaymentEntity paymentEntity = paymentRepository.findByOrderId(id);
         log.info("Payment Details Found : {}", paymentEntity.getId());
         return paymentMapper.entityToDomain(paymentEntity);
     }
 
     @Override
-    public Payment findById() {
+    public Payment findById(Long id) {
 
-        PaymentEntity p =  paymentRepository.findById(1L).orElse(null);
+        PaymentEntity p =  paymentRepository.findById(id).orElse(null);
         log.info("Payment Found : {}", p);
         return paymentMapper.entityToDomain(p);
     }

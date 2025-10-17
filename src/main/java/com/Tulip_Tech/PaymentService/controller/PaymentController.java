@@ -30,6 +30,6 @@ public class PaymentController {
 
     @GetMapping("/by/{id}")
     public ResponseEntity<?> getPaymentById(@PathVariable Long id) {
-        return new ResponseEntity<>(paymentServiceImpl.findById(),HttpStatus.OK);
+        return new ResponseEntity<>(paymentServiceImpl.findById(id),HttpStatus.OK);
     }
 }
