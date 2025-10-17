@@ -42,13 +42,22 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public Payment findPaymentByOrderId(Long id) {
         log.info("Get Payment Details for Order Id : {}", id);
-        Optional<PaymentEntity> paymentEntity = Optional.ofNullable(paymentRepository.findByOrderId(id));
-        if (paymentEntity.isPresent()) {
-            return paymentMapper.entityToDomain(paymentEntity.get());
-        } else {
-            log.error("Payment not found for Order Id : {}", id);
-            ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, "Payment not found for Order Id : " + id);
-            throw new RuntimeException(problemDetail.toString());
-        }
+
+//        Optional<PaymentEntity> paymentEntity = Optional.ofNullable(paymentRepository.findByOrderId(id));
+
+
+        PaymentEntity paymentEntity = paymentRepository.findByOrderId(id);
+        log.info("Payment Details Found : {}", paymentEntity.getId());
+        return paymentMapper.entityToDomain(paymentEntity);
     }
+
+    @Override
+    public Payment findById() {
+
+        PaymentEntity p =  paymentRepository.findById(1L).orElse(null);
+        log.info("Payment Found : {}", p);
+        return paymentMapper.entityToDomain(p);
+    }
+
+
 }

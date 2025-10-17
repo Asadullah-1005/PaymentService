@@ -27,4 +27,9 @@ public class PaymentController {
                 paymentServiceImpl.findPaymentByOrderId(id)
                 , HttpStatus.OK);
     }
+
+    @GetMapping("/by/{id}")
+    public ResponseEntity<?> getPaymentById(@PathVariable Long id) {
+        return new ResponseEntity<>(paymentServiceImpl.findById(),HttpStatus.OK);
+    }
 }
